@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../_services/auth.service';
 import Chart from 'chart.js';
 import { ModalService } from '../../components/_modal';
-
+import { MustMatch } from '../../_helpers/must-match.validator';
 // core components
 import {
   chartOptions,
@@ -22,8 +24,11 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
-  constructor(private modalService: ModalService) { }
+  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private authService: AuthService) { }
   bodyText: string;
+  registerForm: FormGroup;
+  submitted = false;
+
 
   ngOnInit() {
 
@@ -65,8 +70,18 @@ export class DashboardComponent implements OnInit {
     });
     this.bodyText = 'This text can be updated in modal 1';
 
-
     setTimeout(() => this.openModal(), 1000);
+
+
+    this.registerForm = this.formBuilder.group({
+      newpass: ['', [Validators.required]],
+      confirmpass: ['', [Validators.required]]
+
+    }, {
+      validator: MustMatch('newpass', 'confirmpass')
+    });
+
+
   }
 
 
@@ -84,5 +99,40 @@ export class DashboardComponent implements OnInit {
   closeModal(id: string) {
     this.modalService.close(id);
   }
+
+  get f() {
+    return this.registerForm.controls;
+  }
+
+
+  onSubmit() {
+
+
+    debugger;
+    this.submitted = true;
+
+    if (this.registerForm.invalid) {
+      return;
+    }
+    const { newpass } = this.registerForm.value;
+
+    this.authService.resetpassword(newpass).subscribe(
+      data => {
+        debugger;
+        if (data.responseCode == 200) {
+          this.modalService.close("custom-modal-1");
+        }
+        else if (data.responseCode == 400) {
+          //this.alertService.error(data.responseMessage);
+          this.modalService.close("custom-modal-1");
+        }
+      },
+      err => {
+
+      }
+    );
+  }
+
+
 
 }

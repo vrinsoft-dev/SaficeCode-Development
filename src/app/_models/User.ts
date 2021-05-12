@@ -8,4 +8,10 @@ export class User {
     role: Role;
     token?: string;
     authdata?: string;
+    userId: number;
+    userTypeId: number;
+    fullName: string;
+    isAutoPass: boolean;
+    isApproved: boolean;
+    isActive: boolean;
 }

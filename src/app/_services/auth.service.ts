@@ -34,21 +34,29 @@ export class AuthService {
       EmailID: username,
       Password: password
     }, httpOptions).pipe(map(user => {
-      localStorage.setItem('user', JSON.stringify(user));
-      this.userSubject.next(user);
+      localStorage.setItem('user', JSON.stringify(user.responseObject));
+      this.userSubject.next(user.responseObject);
       return user;
     }));
+  }
 
 
+
+  resetpassword(password: string): Observable<any> {
+    debugger;
+    return this.http.post<any>(this.api.MainDomain + this.api.ResetPassword, {
+      UserId: this.userValue.userId, Password: password
+    }, httpOptions);
 
   }
+
   Register(model: object): Observable<any> {
     debugger;
     return this.http.post<any>(this.api.MainDomain + this.api.register, model, httpOptions);
   }
 
   ForgotPassword(Email: string): Observable<any> {
-    debugger
+
 
     return this.http.post(this.api.MainDomain + this.api.forgotpassword, {
       EmailID: Email,

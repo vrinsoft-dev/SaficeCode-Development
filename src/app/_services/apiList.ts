@@ -5,4 +5,6 @@ export class APIList {
     public forgotpassword = "User/forgotpassword";
     public Getallclinet = "User/Getallclinet";
     public ApproveClinet = "User/ApproveClinet/";
+    public ResetPassword = "User/resetpassword";
+
 }
