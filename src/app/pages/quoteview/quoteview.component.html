@@ -1,0 +1,173 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <!-- style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;" -->
+    <!-- Mask -->
+    <span class="mask bg-green opacity-8"></span>
+    <!-- Header container -->
+    <div class="container-fluid d-flex align-items-center">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <h1 class="text-white">Quote Management</h1>
+        </div>
+      </div>
+    </div>
+    </div>
+  <div class="container-fluid mt--7">
+    <div class="row">
+  
+      <div class="col-xl-12 order-xl-1">
+        <div class="card bg-secondary shadow">
+          <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+              <div class="col-xl-7">
+                <h3 class="mb-0">Quote View</h3>
+              </div>
+              <div class="col-xl-5 text-right mt-3 mt-lg-0 mt-xl-0 pl-xs-1 pr-xs-1">
+                <a href="#" class="btn btn-info p-md-2 p-1">Edit profile</a>
+                <a href="#!" class="btn btn-success p-md-2 p-1">Downloade</a>
+                <a href="#!" class="btn btn-success p-md-2 p-1">view</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form>
+              <h6 class="heading-small text-muted mb-4">Quote includes</h6>
+              <div class="pl-lg-4">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-id">Id</label>
+                      <input type="text" id="input-id" class="form-control form-control-alternative" placeholder="id" value="45658">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-date">Date</label>
+                      <div class="input-group input-group-alternative">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control datepicker" placeholder="Select date" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" type="text"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-client-name">Client Name</label>
+                      <input type="text" id="input-client-name" class="form-control form-control-alternative" placeholder="Client Name" value="Connor">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-Company-name">Company  name</label>
+                      <input type="text" id="input-Company-name" class="form-control form-control-alternative" placeholder="Company Name" value="company1">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-project-name">Project Name</label>
+                        <input type="text" id="input-project-name" class="form-control form-control-alternative" placeholder="Project Name" value="project name">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-department-name">Department</label>
+                        <input type="text" id="input-department-name" class="form-control form-control-alternative" placeholder="Department" value="department">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-project-type">Project Type</label>
+                        <input type="text" id="input-project-type" class="form-control form-control-alternative" placeholder="Project Type" value="project Type1">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-project-describe">Project Description</label>
+                        <input type="text" id="input-project-describe" class="form-control form-control-alternative" placeholder="Project Description" value="project description">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-project-requirement">Project Requirement </label>
+                        <input type="text" id="input-project-requirement" class="form-control form-control-alternative" placeholder="Project Requirement" value="project requirement1">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-additional-info">Additional Info</label>
+                        <input type="text" id="input-additional-info" class="form-control form-control-alternative" placeholder="Additional Info" value="additional info1">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-desired-time">Desired Timeline/Time Constraints </label>
+                        <br/>
+                        <label class="custom-toggle">
+                            <input type="checkbox" checked="">
+                            <span class="custom-toggle-slider rounded-circle"></span>
+                          </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-budget-project">Budget for Project</label>
+                        <input type="text" id="input-budget-project" class="form-control form-control-alternative" placeholder="Budget for Project" value="budget for project">
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-hours-describe">Total Hours required for project with description</label>
+                        <textarea rows="4" class="form-control form-hours-describe" placeholder="Total Hours required for project with description">Total Hours required for project with description</textarea>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-proposed-project">Total Amount for proposed project </label>
+                        <input type="text" id="input-proposed-project" class="form-control form-control-alternative" placeholder="Total Amount for proposed project" value="Total Amount for proposed project">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                          <label class="form-control-label" for="input-timeline-project">Expected timeline if project accepted </label>
+                          <input type="text" id="input-timeline-project" class="form-control form-control-alternative" placeholder="Expected timeline if project accepted" value="Expected timeline if project accepted">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-resources-required">Resources Required</label>
+                        <textarea rows="4" class="form-control form-resources-required" placeholder="Resources Required">Resources Required</textarea>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <a href="#/quote-management" class="btn btn-info">Submit</a>
+                        <a _ngcontent-irn-c119="" href="#/quote-management" class="btn btn-warning">cancel</a>
+                      </div>
+                    </div>
+                </div>                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
