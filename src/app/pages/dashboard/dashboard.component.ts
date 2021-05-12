@@ -77,6 +77,7 @@ export class DashboardComponent implements OnInit {
 
   openModal() {
     //this.modalService.open(id);
+
     this.modalService.open("custom-modal-1");
 
   }
