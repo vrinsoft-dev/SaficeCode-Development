@@ -67,8 +67,13 @@ export class AuthService {
   GetClientList(): Observable<any> {
     return this.http.get(this.api.MainDomain + this.api.Getallclinet, httpOptions);
   }
+
   ApproveClinet(ClinetID: number): Observable<any> {
-    return this.http.put(this.api.MainDomain + this.api.ApproveClinet + ClinetID, httpOptions);
+    return this.http.get(this.api.MainDomain + this.api.ApproveClinet + ClinetID, httpOptions);
+  }
+
+  DeleteClient(ClinetID: number): Observable<any> {
+    return this.http.get(this.api.MainDomain + this.api.DeleteClient + ClinetID, httpOptions);
   }
 
 

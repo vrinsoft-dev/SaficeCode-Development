@@ -120,5 +120,24 @@ export class ClientManagementComponent implements OnInit {
   }
 
 
+  DeleteClient(UserID): void {
 
+    this.authService.DeleteClient(UserID).subscribe(
+      data => {
+        if (data != null) {
+          if (data.responseCode == 200) {
+            this.alertService.success("Client Deleted.");
+            this.GetclinetList();
+          }
+          else if (data.responseCode == 400) {
+            this.alertService.error("Error");
+
+          }
+        }
+      },
+      err => {
+
+      }
+    );
+  }
 }
