@@ -3,3 +3,22 @@
 //
 
 @import "../core/dropdowns/dropdown";
+
+.dropdown-menu {
+
+    &.custom{min-width: 15rem;}
+
+    .dropdown-item-li {
+        display:flex; align-items: center; justify-content:space-between;
+        padding: .5rem 1rem;
+        font-size: $font-size-sm;
+        > i,
+        > svg {
+            margin-right: 1rem;
+            font-size: 1rem;
+            vertical-align: -17%;
+        }
+
+        .custom-toggle{margin:0; flex-shrink:0;}
+    }
+}

@@ -7,3 +7,25 @@
 @import "../core/navbars/navbar-search";
 @import "../core/navbars/navbar-dropdown";
 @import "../core/navbars/navbar-collapse";
+
+.navbar-vertical .navbar-nav{
+    .nav-item.nav-label-custom{
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+
+        .nav-link{border-top:1px solid rgba(255,255,255,.1);
+            color:#8898aa !important; 
+            cursor: auto;
+            pointer-events:none;
+            margin-top:1rem;
+            padding:1rem 0;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            
+            &:before{display:none;}
+            > i{display:none;}
+        }
+
+    }
+}

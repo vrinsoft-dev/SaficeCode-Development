@@ -118,7 +118,7 @@ export class DashboardComponent implements OnInit {
 
     this.authService.resetpassword(newpass).subscribe(
       data => {
-        debugger;
+
         if (data.responseCode == 200) {
           this.modalService.close("custom-modal-1");
         }
