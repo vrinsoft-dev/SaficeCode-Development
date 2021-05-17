@@ -72,7 +72,9 @@
 
 
             <div class="text-center">
-              <button type="submit" class="btn btn-primary my-4">Sign in</button>
+              <button [disabled]="loading" type="submit" class="btn btn-primary my-4">
+                <span *ngIf="loading" class="fas fa-spinner fa-spin"></span>
+                Sign in</button>
             </div>
           </form>
         </div>

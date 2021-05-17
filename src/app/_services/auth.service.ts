@@ -43,7 +43,6 @@ export class AuthService {
 
 
   resetpassword(password: string): Observable<any> {
-    debugger;
     return this.http.post<any>(this.api.MainDomain + this.api.ResetPassword, {
       UserId: this.userValue.userId, Password: password
     }, httpOptions);
@@ -51,13 +50,10 @@ export class AuthService {
   }
 
   Register(model: object): Observable<any> {
-    debugger;
     return this.http.post<any>(this.api.MainDomain + this.api.register, model, httpOptions);
   }
 
   ForgotPassword(Email: string): Observable<any> {
-
-
     return this.http.post(this.api.MainDomain + this.api.forgotpassword, {
       EmailID: Email,
     }, httpOptions);

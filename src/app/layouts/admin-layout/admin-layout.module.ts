@@ -31,6 +31,7 @@ import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-polic
 import { TermsConditionComponent } from '../../pages/terms-condition/terms-condition.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '../../components/_modal';
+import { NgxSpinnerModule } from "ngx-spinner";
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -42,7 +43,8 @@ import { ModalModule } from '../../components/_modal';
     ReactiveFormsModule,
     NgbModule,
     ClipboardModule,
-    ModalModule
+    ModalModule,
+    NgxSpinnerModule,
 
 
   ],

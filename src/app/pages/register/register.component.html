@@ -69,7 +69,7 @@
                   [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }" />
                 <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
                   <div *ngIf="f.EmailId.errors.required">Email is required</div>
-                  <div *ngIf="f.EmailId.errors.email">Email must be a valid email address</div>
+                  <div *ngIf="f.EmailId.errors.email">Please enter valid Email.</div>
                 </div>
 
 
@@ -134,21 +134,20 @@
 
                   <input type="checkbox" formControlName="IstermsCondition" id="IstermsCondition"
                     class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.IstermsCondition.errors }" />
-                  <label for="IstermsCondition" class="form-check-label">Terms & Condition</label>
-                  <div *ngIf="submitted && f.IstermsCondition.errors" class="invalid-feedback">Accept Terms & Condition
+                  <label for="IstermsCondition" class="form-check-label">
+                    <span class="text-muted">I agree with the <a [routerLink]="['/TermsAndconditionComponent']">Terms &
+                        Condition</a></span>
+                  </label>
+                  <div *ngIf="submitted && f.IstermsCondition.errors" class="invalid-feedback"> Accept Terms & Condition
                     is required</div>
                 </div>
               </div>
             </div>
-
-
-            <div *ngFor="let alert of alerts" style="cursor: pointer;" class="{{cssClass(alert)}}">
-              <a class="close" (click)="removeAlert(alert)">&times;</a>
-              <span [innerHTML]="alert.message"></span>
-            </div>
-
             <div class="text-center">
-              <button type="submit" class="btn btn-primary mt-4">Create account</button>
+              <button [disabled]="loading" type="submit" class="btn btn-primary my-4">
+                <span *ngIf="loading" class="fas fa-spinner fa-spin"></span>
+                Create account</button>
+
             </div>
           </form>
         </div>

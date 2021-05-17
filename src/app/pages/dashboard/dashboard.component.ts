@@ -28,6 +28,8 @@ export class DashboardComponent implements OnInit {
   bodyText: string;
   registerForm: FormGroup;
   submitted = false;
+  loading = false;
+
 
 
   ngOnInit() {
@@ -91,9 +93,11 @@ export class DashboardComponent implements OnInit {
   }
 
   openModal() {
-    //this.modalService.open(id);
 
-    this.modalService.open("custom-modal-1");
+    if (this.authService.userValue.isAutoPass) {
+      this.modalService.open("custom-modal-1");
+    }
+
 
   }
   closeModal(id: string) {
@@ -107,8 +111,6 @@ export class DashboardComponent implements OnInit {
 
   onSubmit() {
 
-
-    debugger;
     this.submitted = true;
 
     if (this.registerForm.invalid) {
@@ -116,15 +118,16 @@ export class DashboardComponent implements OnInit {
     }
     const { newpass } = this.registerForm.value;
 
+    this.loading = true;
     this.authService.resetpassword(newpass).subscribe(
       data => {
-
         if (data.responseCode == 200) {
           this.modalService.close("custom-modal-1");
+          this.loading = false;
         }
         else if (data.responseCode == 400) {
-          //this.alertService.error(data.responseMessage);
           this.modalService.close("custom-modal-1");
+          this.loading = false;
         }
       },
       err => {

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-
+  loading = false;
 
   alerts: Alert[] = [];
   alertSubscription: Subscription;
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
       });
 
-
+    this.authService.logout();
 
   }
 
@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     const { email, password } = this.registerForm.value;
-
+    this.loading = true;
     this.authService.login(email, password).subscribe(
       data => {
         debugger;
@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
           }
           else if (data.responseCode == 400) {
             this.alertService.error(data.responseMessage);
+            this.loading = false;
           }
         }
 

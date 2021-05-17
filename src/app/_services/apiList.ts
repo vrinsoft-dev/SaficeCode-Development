@@ -3,9 +3,9 @@ export class APIList {
     public login = "User/Login";
     public register = "User/register";
     public forgotpassword = "User/forgotpassword";
-    public Getallclinet = "User/Getallclinet";
-    public ApproveClinet = "User/ApproveClinet/";
+    public Getallclinet = "User/getallclient";
+    public ApproveClinet = "User/approveclinet/";
     public ResetPassword = "User/resetpassword";
-    public DeleteClient = "User/deleteclient";
+    public DeleteClient = "User/deleteclient/";
 
 }

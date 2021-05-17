@@ -477,7 +477,10 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="closeModal('custom-modal-1');"
               data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button [disabled]="loading" type="submit" class="btn btn-primary">
+              <span *ngIf="loading" class="fas fa-spinner fa-spin"></span>
+              Save changes</button>
+
           </div>
         </form>
       </div>

@@ -34,7 +34,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'support-ticket', component: SupportTicketComponent, canActivate: [AuthGuard] },
     { path: 'master', component: MasterComponent, canActivate: [AuthGuard] },
     { path: 'quoteview', component: QuoteviewComponent, canActivate: [AuthGuard] },
-    { path: 'client-edit', component: ClienteditComponent, canActivate: [AuthGuard] },
+    { path: 'client-edit/:id', component: ClienteditComponent, canActivate: [AuthGuard] },
     { path: 'create-invoice', component: CreateInvoiceComponent, canActivate: [AuthGuard] },
     { path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard] },
     { path: 'create-ticket', component: CreateTicketComponent, canActivate: [AuthGuard] },
