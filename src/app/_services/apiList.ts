@@ -7,5 +7,8 @@ export class APIList {
     public ApproveClinet = "User/approveclinet/";
     public ResetPassword = "User/resetpassword";
     public DeleteClient = "User/deleteclient/";
+    public GetClinetDetail = "User/getclinetdetail/";
+    public DashboardDetailbyId = "User/dashboarddetailbyid/";
+    public GetClientTypeList = "User/getclinetype";
 
 }

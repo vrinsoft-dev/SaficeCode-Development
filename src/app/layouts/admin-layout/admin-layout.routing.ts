@@ -22,7 +22,7 @@ import { ProjectTypeComponent } from '../../pages/project-type/project-type.comp
 import { SupportTicketImpactComponent } from '../../pages/support-ticket-impact/support-ticket-impact.component';
 import { AboutUsComponent } from '../../pages/about-us/about-us.component';
 import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-policy.component';
-import { TermsConditionComponent } from '../../pages/terms-condition/terms-condition.component';
+
 import { AuthGuard } from '../../_helpers/auth.guard';
 export const AdminLayoutRoutes: Routes = [
 
@@ -47,6 +47,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'project-type', component: ProjectTypeComponent, canActivate: [AuthGuard] },
     { path: 'support-ticket-impact', component: SupportTicketImpactComponent, canActivate: [AuthGuard] },
     { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
-    { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] },
-    { path: 'terms-condition', component: TermsConditionComponent, canActivate: [AuthGuard] }
+    { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] }
+
+
 ];

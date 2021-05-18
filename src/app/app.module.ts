@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { APIList } from './_services/apiList';
 import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
-import { TermsAndconditionComponent } from './pages/terms-andcondition/terms-andcondition.component';
+
 
 
 
@@ -34,9 +34,6 @@ import { TermsAndconditionComponent } from './pages/terms-andcondition/terms-and
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    TermsAndconditionComponent,
-
-
 
   ],
   providers: [APIList, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },

@@ -28,7 +28,7 @@ import { ProjectTypeComponent } from '../../pages/project-type/project-type.comp
 import { SupportTicketImpactComponent } from '../../pages/support-ticket-impact/support-ticket-impact.component';
 import { AboutUsComponent } from '../../pages/about-us/about-us.component';
 import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-policy.component';
-import { TermsConditionComponent } from '../../pages/terms-condition/terms-condition.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '../../components/_modal';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -70,8 +70,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ProjectTypeComponent,
     SupportTicketImpactComponent,
     AboutUsComponent,
-    PrivacyPolicyComponent,
-    TermsConditionComponent
+    PrivacyPolicyComponent
 
   ]
 })

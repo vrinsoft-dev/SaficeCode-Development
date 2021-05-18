@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  </div>
+</div>
 <div class="container-fluid mt--7">
   <div class="row">
 
@@ -24,58 +24,105 @@
           </div>
         </div>
         <div class="card-body">
-          <form>            
+          <form role="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-id">Id</label>
-                    <input type="text" id="input-id" class="form-control form-control-alternative" placeholder="id" value="45658" disabled="">
+                    <input type="text" id="input-id" formControlName="UserId"
+                      class="form-control form-control-alternative" placeholder="id" value="0" disabled="">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-name">Name</label>
-                    <input type="text" id="input-name" class="form-control form-control-alternative" placeholder="Name" value="Connor">
+                    <label class="form-control-label" for="input-name">Full Name</label>
+
+                    <input type="text" placeholder="Full Name" formControlName="FullName" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.FullName.errors }" />
+                    <div *ngIf="submitted && f.FullName.errors" class="invalid-feedback">
+                      <div *ngIf="f.FullName.errors.required">Client Name is required</div>
+                    </div>
+
+
+
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-legal-name">Legal Name</label>
-                    <input type="text" id="input-legal-name" class="form-control form-control-alternative" placeholder="Legal Name" value="Connor">
+                    <label class="form-control-label" for="input-legal-name">Company Name</label>
+                    <input type="text" placeholder="Company Name" formControlName="CompanyName" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.CompanyName.errors }" />
+                    <div *ngIf="submitted && f.CompanyName.errors" class="invalid-feedback">
+                      <div *ngIf="f.CompanyName.errors.required">Company Name is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-type">Type</label>
-                    <input type="text" id="input-type" class="form-control form-control-alternative" placeholder="Type" value="type1">
+                    <!-- <input type="text" formControlName="Type" class="form-control" placeholder="Type"
+                      [ngClass]="{ 'is-invalid': submitted && f.Type.errors }" />
+                    <div *ngIf="submitted && f.Type.errors" class="invalid-feedback">
+                      <div *ngIf="f.Type.errors.required">Type is required</div>
+                    </div> -->
+
+
+                    <select class="form-control" formControlName="ClientType"
+                      [ngClass]="{ 'is-invalid': submitted && f.ClientType.errors }">
+                      <option>Select Client Type</option>
+                      <option *ngFor="let type of ClientTypeList" value="{{type.clientTypeId}}">
+                        {{type.clientTypeName}}</option>
+                    </select>
+                    <div *ngIf="submitted && f.ClientType.errors" class="invalid-feedback">
+                      <div *ngIf="f.ClientType.errors.required">Client Type is required</div>
+                    </div>
+
+
                   </div>
                 </div>
-              </div>              
-              <div class="row">                  
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-email-id">Email ID</label>
-                      <input type="text" id="input-email-id" class="form-control form-control-alternative" placeholder="Email ID" value="test@gmail.com">
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="form-group">
-                      <label class="form-control-label" for="input-currancy">CURRENCY</label>
-                      <input type="text" id="input-currancy" class="form-control form-control-alternative" placeholder="CURRENCY" value="60$">
-                    </div>
-                  </div>
               </div>
               <div class="row">
-                  <div class="col-lg-12">
-                    <div class="form-group">
-                      <a href="#/client-management" class="btn btn-info">Submit</a>
-                      <a href="#/client-management" class="btn btn-warning">cancel</a>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-email-id">Email ID</label>
+                    <input type="text" formControlName="EmailId" class="form-control" placeholder="Email"
+                      [ngClass]="{ 'is-invalid': submitted && f.EmailId.errors }" />
+                    <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
+                      <div *ngIf="f.EmailId.errors.required">Email is required</div>
+                      <div *ngIf="f.EmailId.errors.email">Please enter valid Email.</div>
+                    </div>
+
+
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-currancy">Currency Name</label>
+                    <input type="text" formControlName="CurrencyName" class="form-control" placeholder="Currency Name"
+                      [ngClass]="{ 'is-invalid': submitted && f.CurrencyName.errors }" />
+                    <div *ngIf="submitted && f.CurrencyName.errors" class="invalid-feedback">
+                      <div *ngIf="f.CurrencyName.errors.required">Currency is required</div>
+                      <!-- <div *ngIf="f.CurrencyName.errors.email">Please enter valid Email.</div> -->
                     </div>
                   </div>
-              </div>                
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <!-- <a href="#/client-management" class="btn btn-info">Submit</a> -->
+
+                    <button [disabled]="loading" type="submit" class="btn btn-info">
+                      <span *ngIf="loading" class="fas fa-spinner fa-spin"></span>
+                      Submit</button>
+
+                    <a href="#/client-management" class="btn btn-warning">Cancel</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </form>
         </div>

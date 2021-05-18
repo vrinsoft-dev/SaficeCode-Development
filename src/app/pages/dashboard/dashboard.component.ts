@@ -4,6 +4,7 @@ import { AuthService } from '../../_services/auth.service';
 import Chart from 'chart.js';
 import { ModalService } from '../../components/_modal';
 import { MustMatch } from '../../_helpers/must-match.validator';
+import { NgxSpinnerService } from "ngx-spinner";
 // core components
 import {
   chartOptions,
@@ -24,12 +25,12 @@ export class DashboardComponent implements OnInit {
   public salesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
-  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(private ngxSpinnerService: NgxSpinnerService, private modalService: ModalService, private formBuilder: FormBuilder, private authService: AuthService) { }
   bodyText: string;
   registerForm: FormGroup;
   submitted = false;
   loading = false;
-
+  TotalClinetRegistered: number;
 
 
   ngOnInit() {
@@ -84,6 +85,9 @@ export class DashboardComponent implements OnInit {
     });
 
 
+    this.GetDashboardDetail();
+
+
   }
 
 
@@ -92,6 +96,8 @@ export class DashboardComponent implements OnInit {
     this.salesChart.update();
   }
 
+
+  //#region  for Reset Password 
   openModal() {
 
     if (this.authService.userValue.isAutoPass) {
@@ -107,8 +113,6 @@ export class DashboardComponent implements OnInit {
   get f() {
     return this.registerForm.controls;
   }
-
-
   onSubmit() {
 
     this.submitted = true;
@@ -119,15 +123,18 @@ export class DashboardComponent implements OnInit {
     const { newpass } = this.registerForm.value;
 
     this.loading = true;
+    this.ngxSpinnerService.show();
     this.authService.resetpassword(newpass).subscribe(
       data => {
         if (data.responseCode == 200) {
           this.modalService.close("custom-modal-1");
           this.loading = false;
+          this.ngxSpinnerService.hide();
         }
         else if (data.responseCode == 400) {
           this.modalService.close("custom-modal-1");
           this.loading = false;
+          this.ngxSpinnerService.hide();
         }
       },
       err => {
@@ -135,6 +142,34 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
+  //#endregion nd region for Reset Password 
+
+
+
+  //#region  For Dashboard Count 
+
+  GetDashboardDetail() {
+    this.ngxSpinnerService.show();
+    this.authService.GetDashboardDetail().subscribe(
+      data => {
+        if (data.responseCode == 200) {
+          debugger;
+          this.TotalClinetRegistered = data.responseObject.totalClinetRegistered;
+          this.ngxSpinnerService.hide();
+        }
+        else if (data.responseCode == 400) {
+          this.ngxSpinnerService.hide();
+        }
+      },
+      err => {
+
+      }
+    );
+  }
+
+  //#endregion
+
 
 
 

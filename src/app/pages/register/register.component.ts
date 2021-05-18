@@ -5,7 +5,7 @@ import { AuthService } from '../../_services/auth.service';
 import { TokenstorageService } from '../../_services/tokenstorage.service';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-
+import { ModalService } from '../../components/_modal';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -18,8 +18,9 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   loading = false;
   routeSubscription: Subscription;
+  mdltertmcondtion: false;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenstorageService, private router: Router) { }
+  constructor(private modalService: ModalService, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenstorageService, private router: Router) { }
 
 
 
@@ -83,6 +84,21 @@ export class RegisterComponent implements OnInit {
     }).then((result) => {
 
     });
+  }
+
+
+  OpenModalForTermAndCondition() {
+    debugger;
+    this.modalService.open("custom-modal-1");
+  }
+
+  closeModal(id: string) {
+    this.modalService.close(id);
+  }
+
+
+  onCheckboxChange(e) {
+    this.mdltertmcondtion = e.target.checked;
   }
 
 

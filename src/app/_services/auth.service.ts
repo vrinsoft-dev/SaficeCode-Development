@@ -79,4 +79,17 @@ export class AuthService {
     this.userSubject.next(null);
     this.router.navigate(['/login']);
   }
+
+  GetDashboardDetail(): Observable<any> {
+    return this.http.get(this.api.MainDomain + this.api.DashboardDetailbyId + this.userValue.userTypeId, httpOptions);
+  }
+  GetClinetDetail(ClinetID: number): Observable<any> {
+    return this.http.get(this.api.MainDomain + this.api.GetClinetDetail + ClinetID, httpOptions);
+  }
+
+  GetClinetTypeList(): Observable<any> {
+    return this.http.get(this.api.MainDomain + this.api.GetClientTypeList, httpOptions);
+  }
+
+
 }

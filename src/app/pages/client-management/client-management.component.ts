@@ -74,7 +74,7 @@ export class ClientManagementComponent implements OnInit {
   DeleteClient(UserID): void {
 
     Swal.fire({
-      title: 'Do you want to delete the Client??',
+      title: 'Do you want to delete the Client?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: `Yes`,

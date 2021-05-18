@@ -8,19 +8,22 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../../pages/login/login.component';
 import { RegisterComponent } from '../../pages/register/register.component';
 import { ForgotPasswordComponent } from '../../pages/forgot-password/forgot-password.component';
-
+import { TermsConditionComponent } from '../../pages/terms-condition/terms-condition.component';
+import { ModalModule } from '../../components/_modal';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AuthLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    ModalModule
   ],
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    TermsConditionComponent
   ]
 })
 export class AuthLayoutModule { }
