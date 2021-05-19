@@ -32,6 +32,7 @@ import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-polic
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '../../components/_modal';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { FilterPipe } from '../../_services/search.pipe';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -70,7 +71,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ProjectTypeComponent,
     SupportTicketImpactComponent,
     AboutUsComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    FilterPipe
 
   ]
 })
