@@ -22,8 +22,12 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i _ngcontent-xqn-c106="" class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control form-control-alternative" (keyup)="applyFilter($event.target.value)"
-                  placeholder="Search" type="text">
+                <!-- <input class="form-control form-control-alternative" (keyup)="applyFilter($event.target.value)"
+                  placeholder="Search" type="text"> -->
+
+                <input type="text" placeholder="Search" class="form-control form-control-alternative"
+                  (keyup)="inputChange($event.target.value)">
+
               </div>
             </div>
           </div>
@@ -31,8 +35,9 @@
         <div class="table-responsive">
 
 
-          <!-- <table datatable  class="table align-items-center table-flush"> -->
-          <table class="table align-items-center table-flush">
+
+          <!-- <table class="table align-items-center table-flush"> -->
+          <table class="table table-striped">
             <thead class="thead-light">
               <tr>
                 <th scope="col">ID </th>
@@ -47,7 +52,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Client of ClientList | appFilter: searchText">
+              <tr *ngFor="let Client of ClientList">
 
 
                 <td scope="row">
@@ -128,7 +133,7 @@
               </tr>
             <tbody *ngIf="ClientList?.length == 0">
               <tr>
-                <td colspan="8" class="no-data-available">No data found!</td>
+                <td colspan="9" class="no-data-available">No data found!</td>
               </tr>
             </tbody>
           </table>
@@ -139,7 +144,7 @@
 
         <div class="card-footer py-4">
           <nav aria-label="...">
-            <ul class="pagination justify-content-end mb-0">
+            <!-- <ul class="pagination justify-content-end mb-0">
               <li class="page-item disabled">
                 <a class="page-link" href="javascript:void(0)" tabindex="-1">
                   <i class="fas fa-angle-left"></i>
@@ -149,17 +154,34 @@
               <li class="page-item active">
                 <a class="page-link" href="javascript:void(0)">1</a>
               </li>
-              <!-- <li class="page-item">
-                <a class="page-link" href="javascript:void(0)">2 <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li> -->
               <li class="page-item">
                 <a class="page-link" href="javascript:void(0)">
                   <i class="fas fa-angle-right"></i>
                   <span class="sr-only">Next</span>
                 </a>
               </li>
+            </ul> -->
+
+            <ul class="pagination justify-content-end mb-0">
+              <li class="page-item" (click)="onClickPage(activePage - 1)">
+                <a class="page-link" href="javascript:void(0)" tabindex="-1">
+                  <i class="fas fa-angle-left"></i>
+                  <span class="sr-only">Previous</span>
+                </a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': activePage === item}" *ngFor="let item of pages"
+                (click)="onClickPage(item)"><a class="page-link" href="javascript:void(0);">{{item}}</a></li>
+
+              <li class="page-item" (click)="onClickPage(activePage + 1)">
+
+                <a class="page-link" href="javascript:void(0)">
+                  <i class="fas fa-angle-right"></i>
+                  <span class="sr-only">Next</span>
+                </a>
+
+              </li>
             </ul>
+
           </nav>
         </div>
       </div>
@@ -169,3 +191,22 @@
 <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">
   <p style="color: white">Please Wait. </p>
 </ngx-spinner>
+
+<!-- <script>
+
+
+  jQuery(document).ready(function () {
+
+    jQuery('.table-responsive').on('show.dropdown', function () {
+      jQuery('.table-responsive').css("overflow", "inherit");
+    });
+
+    jQuery('.table-responsive').on('.dropdown', function () {
+      jQuery('.table-responsive').css("overflow", "auto");
+    })
+
+  });
+  this.imageZoom1 = document.getElementsByClassName("table-responsive");
+  elm.style.overflow = "inherit";
+
+</script> -->

@@ -33,7 +33,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '../../components/_modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FilterPipe } from '../../_services/search.pipe';
-// import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -45,7 +44,7 @@ import { FilterPipe } from '../../_services/search.pipe';
     NgbModule,
     ClipboardModule,
     ModalModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule
 
 
   ],
@@ -75,6 +74,8 @@ import { FilterPipe } from '../../_services/search.pipe';
     FilterPipe
 
   ]
+
+
 })
 
 export class AdminLayoutModule { }

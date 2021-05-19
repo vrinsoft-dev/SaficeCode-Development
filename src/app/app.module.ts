@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { APIList } from './_services/apiList';
 import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
-import { DataTablesModule } from "angular-datatables";
+
 
 
 
@@ -25,9 +25,7 @@ import { DataTablesModule } from "angular-datatables";
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule,
-    DataTablesModule,
-
+    AppRoutingModule
 
 
 
@@ -36,12 +34,10 @@ import { DataTablesModule } from "angular-datatables";
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent,
-
-
+    AuthLayoutComponent
   ],
   providers: [APIList, { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
