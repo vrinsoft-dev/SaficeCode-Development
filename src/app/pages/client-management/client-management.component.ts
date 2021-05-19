@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NgxSpinnerService } from "ngx-spinner";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 @Component({
   selector: 'app-client-management',
   templateUrl: './client-management.component.html',
@@ -16,7 +17,7 @@ export class ClientManagementComponent implements OnInit {
   public copy: string;
   ClientList: Array<any>;
   routeSubscription: Subscription;
-
+  searchText = '';
 
   constructor(private ngxSpinnerService: NgxSpinnerService, private authService: AuthService, private router: Router) {
   }
@@ -27,6 +28,13 @@ export class ClientManagementComponent implements OnInit {
 
 
   }
+
+
+  // applyFilter(filterValue: string) {
+  //   filterValue = filterValue.trim(); // Remove whitespace
+  //   filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+  //   this.ClientList.filter = filterValue;
+  // }
 
   GetclinetList(): void {
     this.ngxSpinnerService.show();
@@ -43,10 +51,12 @@ export class ClientManagementComponent implements OnInit {
   }
   ApproveClinet(UserID): void {
     Swal.fire({
-      title: 'Do you want to Approve the Client Request?',
+      text: 'Do you want to Approve the Client Request?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: `Yes`,
+      confirmButtonColor: '#11cdef',
+      denyButtonColor: '#fb6340',
       denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -74,11 +84,15 @@ export class ClientManagementComponent implements OnInit {
   DeleteClient(UserID): void {
 
     Swal.fire({
-      title: 'Do you want to delete the Client?',
+      text: 'Do you want to delete the Client?',
       showDenyButton: true,
       showCancelButton: false,
+      confirmButtonColor: '#11cdef',
+      denyButtonColor: '#fb6340',
       confirmButtonText: `Yes`,
       denyButtonText: `No`,
+
+
     }).then((result) => {
       if (result.isConfirmed) {
         this.ngxSpinnerService.show();
@@ -107,6 +121,8 @@ export class ClientManagementComponent implements OnInit {
       title: Title,
       text: Massage,
       icon: icon,
+      confirmButtonColor: '#11cdef',
+      denyButtonColor: '#fb6340',
       width: 500,
       showCancelButton: false,
       confirmButtonText: 'Ok',

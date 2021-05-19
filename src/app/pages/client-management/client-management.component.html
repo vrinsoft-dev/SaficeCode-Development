@@ -22,7 +22,8 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i _ngcontent-xqn-c106="" class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control form-control-alternative" placeholder="Search" type="text">
+                <input class="form-control form-control-alternative" (keyup)="applyFilter($event.target.value)"
+                  placeholder="Search" type="text">
               </div>
             </div>
           </div>
@@ -30,6 +31,7 @@
         <div class="table-responsive">
 
 
+          <!-- <table datatable  class="table align-items-center table-flush"> -->
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
@@ -45,7 +47,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Client of ClientList">
+              <tr *ngFor="let Client of ClientList | appFilter: searchText">
 
 
                 <td scope="row">
@@ -93,7 +95,7 @@
 
                 <td>
                   <div class="avatar-group">
-                    <!-- {{Client.}} -->
+
                     <span *ngIf="Client.isActive" _ngcontent-dbn-c117="" _ngcontent-c9=""
                       class="badge badge-dot mr-4"><i _ngcontent-dbn-c117="" _ngcontent-c9="" class="bg-green"></i>
                       Active </span>
@@ -130,6 +132,9 @@
               </tr>
             </tbody>
           </table>
+
+
+
         </div>
 
         <div class="card-footer py-4">
