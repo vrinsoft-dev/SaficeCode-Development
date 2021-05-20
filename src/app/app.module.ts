@@ -17,6 +17,7 @@ import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
 
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -26,6 +27,7 @@ import { BasicAuthInterceptor, ErrorInterceptor } from './_helpers';
     NgbModule,
     RouterModule,
     AppRoutingModule
+
 
 
 

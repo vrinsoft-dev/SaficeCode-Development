@@ -22,8 +22,8 @@ import { ProjectTypeComponent } from '../../pages/project-type/project-type.comp
 import { SupportTicketImpactComponent } from '../../pages/support-ticket-impact/support-ticket-impact.component';
 import { AboutUsComponent } from '../../pages/about-us/about-us.component';
 import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-policy.component';
-
 import { AuthGuard } from '../../_helpers/auth.guard';
+import { AppTableComponent } from '../../pages/app-table/app-table.component';
 export const AdminLayoutRoutes: Routes = [
 
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
@@ -47,7 +47,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'project-type', component: ProjectTypeComponent, canActivate: [AuthGuard] },
     { path: 'support-ticket-impact', component: SupportTicketImpactComponent, canActivate: [AuthGuard] },
     { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
-    { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] }
+    { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] },
+    { path: 'App-table', component: AppTableComponent, canActivate: [AuthGuard] },
+
 
 
 ];

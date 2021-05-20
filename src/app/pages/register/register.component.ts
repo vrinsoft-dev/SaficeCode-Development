@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   loading = false;
   routeSubscription: Subscription;
   mdltertmcondtion: false;
-
+  regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   constructor(private modalService: ModalService, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenstorageService, private router: Router) { }
 
 
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
       CompanyName: ['', Validators.required],
       FullName: ['', Validators.required],
       Industry: ['', Validators.required],
-      EmailId: ['', [Validators.required, Validators.email]],
+      EmailId: ['', [Validators.required, Validators.pattern(this.regularExpression)]],
       MobileNumber: ['', [Validators.required, Validators.minLength(10)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       IstermsCondition: [false, Validators.requiredTrue]
@@ -54,10 +54,16 @@ export class RegisterComponent implements OnInit {
     this.authService.Register(Model).subscribe(
       data => {
         if (data != null) {
-          this.NotifyAlert(data.responseMessage, "Success", "success")
-          this.loading = false;
-        }
+          if (data.responseCode == 200) {
 
+            this.NotifyAlert(data.responseMessage, "Success", "success");
+            this.loading = false;
+          }
+          else if (data.responseCode == 400) {
+            this.NotifyAlert(data.responseMessage, "Error", "warning");
+            this.loading = false;
+          }
+        }
       },
       err => {
         this.loading = false;
@@ -69,12 +75,12 @@ export class RegisterComponent implements OnInit {
 
   NotifyAlert(Massage, Titel, icon) {
     Swal.fire({
-      title: Titel,
       text: Massage,
       icon: icon,
       width: 500,
       showCancelButton: false,
       confirmButtonText: 'Ok',
+      confirmButtonColor: '#141d28',
       showClass: {
         popup: 'animate__animated animate__fadeInDown'
       },
@@ -82,6 +88,9 @@ export class RegisterComponent implements OnInit {
         popup: 'animate__animated animate__fadeOutUp'
       }
     }).then((result) => {
+      if (icon == "success") {
+        this.router.navigate(["/login"]);
+      }
 
     });
   }

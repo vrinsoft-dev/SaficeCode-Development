@@ -37,7 +37,7 @@ export const ROUTES: RouteInfo[] = [
   { path: '', title: 'CMS Management', icon: 'ni text-default', class: 'nav-label-custom', isAdmin: "1" },
 
   { path: '/cms-management', title: 'CMS Management', icon: 'ni ni-single-02 text-default', class: '', isAdmin: "1" },
-
+  { path: 'App-table', title: 'App-table', icon: 'ni ni-single-02 text-default', class: '', isAdmin: "1" },
   // { path: '/client-edit', title: 'client-edit',  icon:'ni ni-atom text-pink', class: '' },
 ];
 

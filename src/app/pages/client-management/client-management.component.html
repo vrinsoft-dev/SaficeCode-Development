@@ -25,8 +25,11 @@
                 <!-- <input class="form-control form-control-alternative" (keyup)="applyFilter($event.target.value)"
                   placeholder="Search" type="text"> -->
 
-                <input type="text" placeholder="Search" class="form-control form-control-alternative"
-                  (keyup)="inputChange($event.target.value)">
+                <input type="text" [(ngModel)]="searchText" placeholder="Search"
+                  class="form-control form-control-alternative" (keyup)="inputChange($event.target.value)">
+
+                <!-- <input type="text" [(ngModel)]="searchText" placeholder="Search"
+                  class="form-control form-control-alternative"> -->
 
               </div>
             </div>
@@ -52,8 +55,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Client of ClientList">
+              <!-- <tr *ngFor="let Client of ClientList"> -->
 
+              <tr *ngFor="let Client of ClientList">
 
                 <td scope="row">
                   <div class="media align-items-center">
@@ -121,12 +125,14 @@
                       <i class="fas fa-ellipsis-v"></i>
                     </a>
                     <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
-                      <a class="dropdown-item" (click)="ApproveClinet(Client.userId)">Approve</a>
-                      <a class="dropdown-item" href="Javascript:void(0);">Reject</a>
+                      <a class="dropdown-item" (click)="ApproveClinet(Client.userId,true)">Approve</a>
+                      <a class="dropdown-item" (click)="ApproveClinet(Client.userId,false)">Reject</a>
                       <a class="dropdown-item" [routerLink]="['/client-edit', Client.userId]">Edit</a>
                       <a class="dropdown-item" (click)="DeleteClient(Client.userId)">Delete</a>
-                      <a class="dropdown-item" href="#">Active</a>
-                      <a class="dropdown-item" href="#">Inactive</a>
+                      <a class="dropdown-item" *ngIf="!Client.isActive"
+                        (click)="ActiveInactiveClinet(Client.userId,true)">Active</a>
+                      <a class="dropdown-item" *ngIf="Client.isActive"
+                        (click)="ActiveInactiveClinet(Client.userId,false)">Inactive</a>
                     </div>
                   </div>
                 </td>
@@ -162,16 +168,16 @@
               </li>
             </ul> -->
 
-            <ul class="pagination justify-content-end mb-0">
+            <!-- <ul class="pagination justify-content-end mb-0">
               <li class="page-item" (click)="onClickPage(activePage - 1)">
                 <a class="page-link" href="javascript:void(0)" tabindex="-1">
                   <i class="fas fa-angle-left"></i>
                   <span class="sr-only">Previous</span>
                 </a>
               </li>
+
               <li class="page-item" [ngClass]="{'active': activePage === item}" *ngFor="let item of pages"
                 (click)="onClickPage(item)"><a class="page-link" href="javascript:void(0);">{{item}}</a></li>
-
               <li class="page-item" (click)="onClickPage(activePage + 1)">
 
                 <a class="page-link" href="javascript:void(0)">
@@ -180,7 +186,11 @@
                 </a>
 
               </li>
-            </ul>
+            </ul> -->
+            <!-- <jw-pagination [items]="ClientList" [maxPages]="maxPages" [initialPage]="initialPage" [pageSize]="pageSize"
+              (changePage)="onChangePage($event)"></jw-pagination> -->
+
+            <!-- <jw-pagination [items]="ClientList" (changePage)="onChangePage($event)"></jw-pagination> -->
 
           </nav>
         </div>

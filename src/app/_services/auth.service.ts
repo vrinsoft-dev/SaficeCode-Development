@@ -61,11 +61,29 @@ export class AuthService {
 
 
   GetClientList(): Observable<any> {
+
     return this.http.get(this.api.MainDomain + this.api.Getallclinet, httpOptions);
+
   }
 
-  ApproveClinet(ClinetID: number): Observable<any> {
-    return this.http.get(this.api.MainDomain + this.api.ApproveClinet + ClinetID, httpOptions);
+
+  ApproveClinet(ClinetID: number, isApproved: boolean): Observable<any> {
+    //return this.http.post(this.api.MainDomain + this.api.ApproveClinet + ClinetID, httpOptions);
+
+    return this.http.post(this.api.MainDomain + this.api.ApproveClinet, {
+      UserId: ClinetID,
+      IsApproved: isApproved
+    }, httpOptions);
+
+  }
+  ActiveInactiveClinet(ClinetID: number, isApproved: boolean): Observable<any> {
+    //return this.http.post(this.api.MainDomain + this.api.ApproveClinet + ClinetID, httpOptions);
+
+    return this.http.post(this.api.MainDomain + this.api.ApproveClinet, {
+      UserId: ClinetID,
+      IsApproved: isApproved
+    }, httpOptions);
+
   }
 
   DeleteClient(ClinetID: number): Observable<any> {

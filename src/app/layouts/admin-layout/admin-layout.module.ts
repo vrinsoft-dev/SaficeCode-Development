@@ -28,12 +28,12 @@ import { ProjectTypeComponent } from '../../pages/project-type/project-type.comp
 import { SupportTicketImpactComponent } from '../../pages/support-ticket-impact/support-ticket-impact.component';
 import { AboutUsComponent } from '../../pages/about-us/about-us.component';
 import { PrivacyPolicyComponent } from '../../pages/privacy-policy/privacy-policy.component';
-
+import { JwPaginationModule } from 'jw-angular-pagination';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalModule } from '../../components/_modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { FilterPipe } from '../../_services/search.pipe';
-
+import { AppTableComponent } from '../../pages/app-table/app-table.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -44,8 +44,8 @@ import { FilterPipe } from '../../_services/search.pipe';
     NgbModule,
     ClipboardModule,
     ModalModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+    JwPaginationModule
 
   ],
   declarations: [
@@ -71,7 +71,8 @@ import { FilterPipe } from '../../_services/search.pipe';
     SupportTicketImpactComponent,
     AboutUsComponent,
     PrivacyPolicyComponent,
-    FilterPipe
+    FilterPipe,
+    AppTableComponent
 
   ]
 

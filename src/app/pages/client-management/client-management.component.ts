@@ -19,55 +19,12 @@ export class ClientManagementComponent implements OnInit {
   AllClientList: Array<any>;
   routeSubscription: Subscription;
   searchText = '';
-
-  //#region pagging
-  @Input() totalRecords = 50;
-  @Input() recordsPerPage = 10;
-
-  @Output() onPageChange: EventEmitter<number> = new EventEmitter();
-
-  public pages: number[] = [];
-  activePage: number;
-
-  ngOnChanges(): any {
-    const pageCount = this.getPageCount();
-    this.pages = this.getArrayOfPage(pageCount);
-    this.activePage = 1;
-    this.onPageChange.emit(1);
-  }
-
-  private getPageCount(): number {
-    let totalPage = 0;
-
-    if (this.totalRecords > 0 && this.recordsPerPage > 0) {
-      const pageCount = this.totalRecords / this.recordsPerPage;
-      const roundedPageCount = Math.floor(pageCount);
-
-      totalPage = roundedPageCount < pageCount ? roundedPageCount + 1 : roundedPageCount;
-    }
-
-    return totalPage;
-  }
-
-  private getArrayOfPage(pageCount: number): number[] {
-    const pageArray = [];
-
-    if (pageCount > 0) {
-      for (let i = 1; i <= pageCount; i++) {
-        pageArray.push(i);
-      }
-    }
-
-    return pageArray;
-  }
-
-  onClickPage(pageNumber: number): void {
-    if (pageNumber >= 1 && pageNumber <= this.pages.length) {
-      this.activePage = pageNumber;
-      this.onPageChange.emit(this.activePage);
-    }
-  }
-
+  // items = [];
+  pageOfItems: Array<any>;
+  initialPage = 1;
+  pageSize = 5;
+  maxPages = 8;
+  message: String
   //#endregion
 
 
@@ -78,10 +35,6 @@ export class ClientManagementComponent implements OnInit {
 
   ngOnInit() {
     this.GetclinetList();
-
-
-
-
   }
 
 
@@ -121,8 +74,10 @@ export class ClientManagementComponent implements OnInit {
 
 
 
-
-
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.ClientList = pageOfItems;
+  }
 
 
 
@@ -140,9 +95,15 @@ export class ClientManagementComponent implements OnInit {
   //       x.industry == filterValue);
   // }
 
-  ApproveClinet(UserID): void {
+  ActiveInactiveClinet(UserID, Isactive): void {
+    if (Isactive) {
+      this.message = 'Do you want to active the client?'
+    }
+    else {
+      this.message = 'Do you want to inactive the client?'
+    }
     Swal.fire({
-      text: 'Do you want to Approve the Client Request?',
+      text: this.message,
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonText: `Yes`,
@@ -152,7 +113,47 @@ export class ClientManagementComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.ngxSpinnerService.show();
-        this.authService.ApproveClinet(UserID).subscribe(
+        this.authService.ActiveInactiveClinet(UserID, Isactive).subscribe(
+          data => {
+            if (data != null) {
+              if (data.responseCode == 200) {
+                this.ngxSpinnerService.hide();
+                this.NotifyAlert(data.responseMessage, "Success", "success");
+              }
+              else if (data.responseCode == 400) {
+                this.ngxSpinnerService.hide();
+                this.NotifyAlert("", "Error", "error");
+
+              }
+            }
+          },
+          err => {
+          }
+        );
+      }
+    })
+  }
+
+  ApproveClinet(UserID, isApproved): void {
+
+    if (isApproved) {
+      this.message = 'Do you want to approve the client request?'
+    }
+    else {
+      this.message = 'Do you want to reject the client request?'
+    }
+    Swal.fire({
+      text: this.message,
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: `Yes`,
+      confirmButtonColor: '#11cdef',
+      denyButtonColor: '#fb6340',
+      denyButtonText: `No`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ngxSpinnerService.show();
+        this.authService.ApproveClinet(UserID, isApproved).subscribe(
           data => {
             if (data != null) {
               if (data.responseCode == 200) {
@@ -175,7 +176,7 @@ export class ClientManagementComponent implements OnInit {
   DeleteClient(UserID): void {
 
     Swal.fire({
-      text: 'Do you want to delete the Client?',
+      text: 'Do you want to delete the client?',
       showDenyButton: true,
       showCancelButton: false,
       confirmButtonColor: '#11cdef',
@@ -192,8 +193,8 @@ export class ClientManagementComponent implements OnInit {
             if (data != null) {
               if (data.responseCode == 200) {
                 this.ngxSpinnerService.hide();
-                this.NotifyAlert("Client Deleted.", "Success", "success");
-                this.GetclinetList();
+                this.NotifyAlert("Client deleted.", "Success", "success");
+
               }
               else if (data.responseCode == 400) {
                 this.ngxSpinnerService.hide();
@@ -209,7 +210,6 @@ export class ClientManagementComponent implements OnInit {
 
   NotifyAlert(Massage, Title, icon) {
     Swal.fire({
-      title: Title,
       text: Massage,
       icon: icon,
       confirmButtonColor: '#11cdef',
@@ -224,7 +224,7 @@ export class ClientManagementComponent implements OnInit {
         popup: 'animate__animated animate__fadeOutUp'
       }
     }).then((result) => {
-
+      this.GetclinetList();
     });
   }
 

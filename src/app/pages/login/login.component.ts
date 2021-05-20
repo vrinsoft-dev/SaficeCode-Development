@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         }
         // add alert to array
         this.alerts.push(alert);
-        setTimeout(() => this.removeAlert(alert), 3000);
+        //setTimeout(() => this.removeAlert(alert), 3000);
 
       });
 
